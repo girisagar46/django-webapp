@@ -1,3 +1,6 @@
 # PyCharm files
 .idea/
 *.iml
+
+# sqlite
+db.sqlite3
