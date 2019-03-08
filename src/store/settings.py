@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'webapp.apps.WebappConfig',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -119,3 +120,23 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Auth0 settings
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove trailing slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'blog-samples.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'figFrnIHTrI169ihT01ksVmmb0HZw2kg'
+SOCIAL_AUTH_AUTH0_SECRET = 'O0Qd3px479Kh5Uii97lo_gGd8f8Ir9a8GHqPosHPfr8zCrw_xcfZ4RLKDs6wqGQt'
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile',
+    'email'
+]
+
+AUTHENTICATION_BACKENDS = {
+    'social_core.backends.auth0.Auth0OAuth2',
+    'django.contrib.auth.backends.ModelBackend'
+}
+
+LOGIN_URL = '/login/auth0'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

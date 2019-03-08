@@ -8,5 +8,7 @@ python_version = "3.6"
 
 [packages]
 django = "*"
+python-jose = "*"
+social-auth-app-django = "*"
 
 [dev-packages]
