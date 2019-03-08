@@ -3,6 +3,9 @@ from django.shortcuts import render
 import json
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth import logout as django_logout
+from django.http import HttpResponseRedirect
+
 
 def index(request):
     products = [
@@ -31,3 +34,11 @@ def profile(request):
         'auth0User': auth0user,
         'userdata': json.dumps(userdata, indent=4)
     })
+
+
+def logout(request):
+    django_logout(request)
+    domain = 'blog-samples.auth0.com'
+    client_id = 'figFrnIHTrI169ihT01ksVmmb0HZw2kg'
+    return_to = 'http://localhost:8000'
+    return HttpResponseRedirect(f'https://{domain}/v2/logout?client_id={client_id}&returnTo={return_to}')
